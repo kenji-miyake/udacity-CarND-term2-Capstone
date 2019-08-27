@@ -8,6 +8,7 @@ import math
 
 from twist_controller import Controller
 
+
 '''
 You can build this node only after you have built (or partially built) the `waypoint_updater` node.
 
@@ -30,6 +31,7 @@ Once you have the proposed throttle, brake, and steer values, publish it on the 
 that we have created in the `__init__` function.
 
 '''
+
 
 class DBWNode(object):
     def __init__(self):
@@ -61,7 +63,7 @@ class DBWNode(object):
         self.loop()
 
     def loop(self):
-        rate = rospy.Rate(50) # 50Hz
+        rate = rospy.Rate(50)  # 50Hz
         while not rospy.is_shutdown():
             # TODO: Get predicted throttle, brake, and steering using `twist_controller`
             # You should only publish the control commands if dbw is enabled

@@ -13,7 +13,7 @@ You can use this file to test your DBW code against a bag recorded with a refere
 The bag can be found at https://s3-us-west-1.amazonaws.com/udacity-selfdrivingcar/files/reference.bag.zip
 
 To use the downloaded bag file, rename it to 'dbw_test.rosbag.bag' and place it in the CarND-Capstone/data folder.
-Then with roscore running, you can then use roslaunch with the dbw_test.launch file found in 
+Then with roscore running, you can then use roslaunch with the dbw_test.launch file found in
 <project_repo>/ros/src/twist_controller/launch.
 
 This file will produce 3 csv files which you can process to figure out how your DBW node is
@@ -29,11 +29,14 @@ class DBWTestNode(object):
         rospy.init_node('dbw_test_node')
 
         rospy.Subscriber('/vehicle/steering_cmd', SteeringCmd, self.steer_cb)
-        rospy.Subscriber('/vehicle/throttle_cmd', ThrottleCmd, self.throttle_cb)
+        rospy.Subscriber('/vehicle/throttle_cmd',
+                         ThrottleCmd, self.throttle_cb)
         rospy.Subscriber('/vehicle/brake_cmd', BrakeCmd, self.brake_cb)
 
-        rospy.Subscriber('/actual/steering_cmd', SteeringCmd, self.actual_steer_cb)
-        rospy.Subscriber('/actual/throttle_cmd', ThrottleCmd, self.actual_throttle_cb)
+        rospy.Subscriber('/actual/steering_cmd',
+                         SteeringCmd, self.actual_steer_cb)
+        rospy.Subscriber('/actual/throttle_cmd', ThrottleCmd,
+                         self.actual_throttle_cb)
         rospy.Subscriber('/actual/brake_cmd', BrakeCmd, self.actual_brake_cb)
 
         rospy.Subscriber('/vehicle/dbw_enabled', Bool, self.dbw_enabled_cb)
@@ -54,7 +57,7 @@ class DBWTestNode(object):
         self.loop()
 
     def loop(self):
-        rate = rospy.Rate(10) # 10Hz
+        rate = rospy.Rate(10)  # 10Hz
         while not rospy.is_shutdown():
             rate.sleep()
         fieldnames = ['actual', 'proposed']
